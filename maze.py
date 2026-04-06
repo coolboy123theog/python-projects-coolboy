@@ -2,15 +2,21 @@ import turtle
 pen=turtle.Turtle()
 screen=turtle.Screen()
 list=["xxxxxxxxxxxxxxx",
-      "xxx xxx      xx",
-      "xxx     xxxx xx",
-      "xxx    xxxxxxxx",
-      "xxxx xxxxxxxxxx",
-      "xxxx  xxxxxxxxx",
-      "xxxxx xxxxxxxxx",
-      "xxxxx xxxxxxxxx",
-      "xxx     xxxxxxx",
-      "xxx   x  xxxxxx"]
+      "xx   xx   xxxxx",
+      "x  x   x    xxx",
+      "xx  xx  xx   xx",
+      "x          xxxx",
+      "xxx xxxxx  xxxx",
+      "xx  x   x    xx",
+      "xx     xxxx   x",
+      "xx x x  x   x x",
+      "xx   xx xxxxx x",
+      "xx xxxx    x  x",
+      "x    xx  xxx xx",
+      "xx    xx      x",
+      "xx xx     xxxxx",
+      "xxxxxxxxxxxxxxx"]
+tilel=[]
 for y in range(len(list)):
     for x in range(len(list[y])):
         tileX=-288+(x*24)
@@ -22,11 +28,49 @@ for y in range(len(list)):
             tile.up()
             tile.speed(0)
             tile.goto(tileX,tileY)
+            tilel.append(tile)
+def validmove(x,y):
+    for tile in tilel:
+        if x==tile.xcor()and y==tile.ycor():
+            return False
+    return True
 def right():
     x=pen.xcor()
     x+=24
     y=pen.ycor()
-    pen.goto(x,y)
+    if validmove(x,y)==True:
+
+        pen.goto(x,y)
 screen.listen()
 screen.onkey(right,"Right")
+
+def left():
+    x=pen.xcor()
+    x-=24
+    y=pen.ycor()
+    if validmove(x,y)==True:
+
+        pen.goto(x,y)
+screen.listen()
+screen.onkey(left,"Left")
+def down():
+    y=pen.ycor()
+    y-=24
+    x=pen.xcor()
+    if validmove(x,y)==True:
+
+        pen.goto(x,y)
+screen.listen()
+screen.onkey(down,"Down")
+
+def up ():
+    y=pen.ycor()
+    y+=24
+    x=pen.xcor()
+    if validmove(x,y)==True:
+
+        pen.goto(x,y)
+screen.listen()
+screen.onkey(up,"Up")
 turtle.done()
+
